@@ -18,14 +18,22 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/react-datepicker/dist/react-datepicker.css",
+              "node_modules/@blocknote/react/dist/style.css",
+              "node_modules/@blocknote/react/src/editor/mantineStyles.css"
             ],
-            "scripts": []
+            "scripts": [],
+
+            "allowedCommonJsDependencies": [
+              "debug",
+              "parse5/lib/parser/index.js",
+              "extend",
+              "is-buffer",
+              "react-dom/client"
+            ]
           },
           "configurations": {
             "production": {
@@ -85,17 +93,15 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
