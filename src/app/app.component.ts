@@ -8,39 +8,36 @@ import {
 } from '@angular/core';
 import * as React from 'react';
 import ReactDOM from 'react-dom/client';
-// import * ReactDOM from 'react-dom'
-// import * as ReactDOM from 'react-dom';
 import Component1 from './react/components/Component1';
+import { DataSharingService } from './service/sharedData.service';
 // import DatePickerComponent from './react/components/DatePicker';
-
+import { Inject } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [],
 })
-export class AppComponent
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy
-{
+export class AppComponent implements OnInit, OnDestroy {
+  constructor(private dataSharingService: DataSharingService) {}
+  sharedData: any;
   root: any = null;
   rootId: string = 'rootId';
 
   ngOnInit(): void {
+    console.log('oninit called !');
+    // console.log(this.dataSharingService.sharedData);
+    this.dataSharingService.sharedData.subscribe((res) => {
+      console.log(res);
+    });
+
     setTimeout(() => {
       this.render();
-    });
+    }, 0);
   }
 
-  ngAfterViewInit(): void {
-    // Your code here
-    this.render();
-  }
-
-  // Implementing ngOnChanges method
-  // changes: SimpleChange
-  ngOnChanges(): void {
-    // Your code here
-    this.render();
+  ngOnChanges(changes: SimpleChange): void {
+    console.log('changes');
   }
 
   ngOnDestroy(): void {}
@@ -145,6 +142,7 @@ export class AppComponent
             children: [],
           },
         ],
+        sharedDataService: this.dataSharingService,
       })
     );
   }
